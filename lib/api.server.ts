@@ -21,9 +21,14 @@ function transformJob(doc: any): Job {
 }
 
 export async function getJobs(): Promise<Job[]> {
-    await connectToDatabase();
-    const jobs = await JobModel.find().sort({ createdAt: -1 }).lean();
-    return jobs.map(transformJob);
+    try {
+        await connectToDatabase();
+        const jobs = await JobModel.find().sort({ createdAt: -1 }).lean();
+        return jobs.map(transformJob);
+    } catch (error) {
+        console.error("FAILED_TO_GET_JOBS:", error);
+        throw error;
+    }
 }
 
 export async function getJobById(id: string): Promise<Job | null> {
