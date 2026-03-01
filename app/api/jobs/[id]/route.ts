@@ -4,11 +4,11 @@ import Job from "@/lib/models/Job";
 
 export async function GET(
     req: NextRequest,
-    { params }: { params: { id: string } },
+    { params }: { params: Promise<{ id: string }> },
 ) {
     try {
         await connectToDatabase();
-        const { id } = params;
+        const { id } = await params;
 
         const job = await Job.findById(id);
         if (!job) {
@@ -35,11 +35,11 @@ export async function GET(
 
 export async function DELETE(
     req: NextRequest,
-    { params }: { params: { id: string } },
+    { params }: { params: Promise<{ id: string }> },
 ) {
     try {
         await connectToDatabase();
-        const { id } = params;
+        const { id } = await params;
 
         const deletedJob = await Job.findByIdAndDelete(id);
 
