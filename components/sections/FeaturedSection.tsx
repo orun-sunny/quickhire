@@ -5,19 +5,11 @@ import { ArrowRight } from "lucide-react";
 import { JobCard } from "../jobs/JobCard";
 import { Job } from "@/lib/types";
 
-const FeaturedSection = async () => {
-    let jobs: Job[] = [];
-    try {
-        const res = await fetch("http://localhost:5000/api/jobs", { cache: 'no-store' });
-        if (res.ok) {
-            const data = await res.json();
-            // Safely parse array if it's wrapped in a data object
-            jobs = Array.isArray(data) ? data : (data?.data || data?.jobs || []);
-        }
-    } catch (error) {
-        console.error("Error fetching jobs:", error);
-    }
+interface FeaturedSectionProps {
+    jobs: Job[];
+}
 
+const FeaturedSection = ({ jobs }: FeaturedSectionProps) => {
     return (
         <section className="py-20 bg-white">
             <Container>
@@ -36,7 +28,7 @@ const FeaturedSection = async () => {
                 <div className="flex gap-6 overflow-x-auto sm:hidden scrollbar-hide pb-4 -mx-4 px-4">
                     {jobs.map((job) => (
                         <JobCard
-                            key={job.id || Math.random()}
+                            key={job.id}
                             job={job}
                             variant="vertical"
                             className="max-w-70 shrink-0"
@@ -45,7 +37,7 @@ const FeaturedSection = async () => {
                 </div>
                 <JobList columns={4} className="hidden sm:grid">
                     {jobs.map((job) => (
-                        <JobCard key={job.id || Math.random()} job={job} variant="vertical" />
+                        <JobCard key={job.id} job={job} variant="vertical" />
                     ))}
                 </JobList>
 

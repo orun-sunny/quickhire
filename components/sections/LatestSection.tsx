@@ -6,20 +6,11 @@ import { JobCard } from "../jobs/JobCard";
 import Image from "next/image";
 import { Job } from "@/lib/types";
 
-const LatestSection = async () => {
-    let jobs: Job[] = [];
-    try {
-        const res = await fetch("http://localhost:5000/api/jobs", { cache: 'no-store' });
-        if (res.ok) {
-            const data = await res.json();
-            jobs = Array.isArray(data) ? data : (data?.data || data?.jobs || []);
+interface LatestSectionProps {
+    jobs: Job[];
+}
 
-            jobs = jobs.slice().reverse();
-        }
-    } catch (error) {
-        console.error("Error fetching latest jobs:", error);
-    }
-
+const LatestSection = ({ jobs }: LatestSectionProps) => {
     return (
         <section className="relative py-10 lg:py-20 bg-slate-50 overflow-hidden">
             {/* Background Pattern */}
@@ -46,7 +37,7 @@ const LatestSection = async () => {
 
                 <JobList columns={2}>
                     {jobs.map((job) => (
-                        <JobCard key={job.id || Math.random()} job={job} variant="horizontal" />
+                        <JobCard key={job.id} job={job} variant="horizontal" />
                     ))}
                 </JobList>
 
