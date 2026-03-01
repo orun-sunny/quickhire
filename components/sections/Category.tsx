@@ -26,10 +26,10 @@ const categories = [
 
 const CategorySection = () => {
     return (
-        <section className="py-20 lg:py-28 bg-white">
+        <section className="py-18 lg:py-30 bg-white">
             <Container>
                 <div className="flex justify-between items-end mb-12">
-                    <h2 className="text-4xl font-bold tracking-tight text-slate-900 font-clash">
+                    <h2 className="text-5xl font-bold tracking-tight text-slate-900 font-clash">
                         Explore by{" "}
                         <span className="text-blue-500 font-clash">category</span>
                     </h2>
@@ -69,7 +69,7 @@ const CategorySection = () => {
                                             </p>
 
                                             <ArrowRight
-                                                className="ml-auto text-slate-500 group-hover:text-white transition-colors hidden sm:inline-flex"
+                                                className="ml-auto text-slate-400 group-hover:text-white transition-colors hidden sm:inline-flex"
                                                 size={20}
                                             />
                                         </div>
@@ -78,7 +78,7 @@ const CategorySection = () => {
 
                                 {/* Arrow */}
                                 <ArrowRight
-                                    className="text-slate-500 group-hover:text-white transition-colors md:mt-8 md:self-end sm:hidden"
+                                    className="text-slate-400 group-hover:text-white transition-colors md:mt-8 md:self-end sm:hidden"
                                     size={20}
                                 />
                             </Link>
@@ -91,7 +91,7 @@ const CategorySection = () => {
                         href="#"
                         className="inline-flex items-center gap-2 text-[#4F46E5] font-semibold font-epilogue"
                     >
-                        Search all jobs <ArrowRight size={20} />
+                        Search all jobs <ArrowRight size={18} />
                     </Link>
                 </div>
             </Container>
